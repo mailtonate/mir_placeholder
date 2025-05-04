@@ -25,64 +25,280 @@
       max-width: 300px;
       height: auto;
       margin-bottom: 20px;
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
+      font-size: 1.5rem;
+      color: #dd0f66;
+      letter-spacing: 1px;
+      margin-bottom: 0.5em;
     }
 
     p {
+      font-size: 1.2rem;
       color: #555;
+      margin-top: 0;
     }
 
     #countdown {
-      font-size: 1.5rem;
-      color: #333;
-      margin-top: 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: #dd0f66;
+      letter-spacing: .5px;
     }
 
     #countdown span {
-      font-weight: bold;
+      font-weight: 700;
+      color: #fe7d0b;
     }
 
-    #themeToggle {
-      margin-top: 25px;
-      padding: 8px 14px;
+    form {
+      margin-top: 30px;
+    }
+
+    input[type="email"] {
+      padding: 8px;
+      width: 240px;
       font-family: 'Rajdhani', sans-serif;
       font-size: 1rem;
-      background: #eee;
+      color: #222;
+      background-color: #fff;
       border: 1px solid #ccc;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    input::placeholder {
+      color: #888;
+      font-style: italic;
+    }
+
+    button {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      background-color: transparent;
+      color: currentColor;
+      border: 2px solid currentColor;
+      padding: 8px 14px;
       cursor: pointer;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    #confirmationMessage {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #28a745;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .fade-out {
+      opacity: 0;
     }
 
     /* Theme Styles */
     .st0 { fill: #dd0f66; }
     .st1 { fill: #fe7d0b; }
 
+    /* Theme: Magenta */
+    body.theme-magenta button {
+      color: #dd0f66;
+      border-color: #dd0f66;
+    }
+    body.theme-magenta .st0,
+    body.theme-magenta #themeToggle { color: #dd0f66; }
+    body.theme-magenta .st1,
+    body.theme-magenta #countdown span { color: #fe7d0b; }
+    body.theme-magenta h1,
+    body.theme-magenta #countdown { color: #dd0f66; }
+    /* Magenta theme overrides */
     body.theme-magenta .st0 { fill: #dd0f66; }
     body.theme-magenta .st1 { fill: #fe7d0b; }
-    body.theme-magenta h1 { color: #dd0f66; }
 
+    /* Theme: Orange */
+    body.theme-orange button {
+      color: #fe7d0b;
+      border-color: #fe7d0b;
+    }
+    body.theme-orange .st0,
+    body.theme-orange #countdown span { color: #dd0f66; }
+    body.theme-orange .st1,
+    body.theme-orange #themeToggle { color: #fe7d0b; }
+    body.theme-orange h1,
+    body.theme-orange #countdown { color: #fe7d0b; }
+    /* Orange theme overrides */
     body.theme-orange .st0 { fill: #fe7d0b; }
     body.theme-orange .st1 { fill: #dd0f66; }
-    body.theme-orange h1 { color: #fe7d0b; }
+
+    /* Tooltip */
+    .rad-toggle-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    #themeToggle {
+      background: none;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      color: #dd0f66;
+      transition: transform 0.2s ease, color 0.3s ease;
+      position: relative;
+    }
+
+    #themeToggle svg {
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    #themeToggle:hover {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    #themeToggle:hover svg {
+      animation: colorPulse 2s infinite;
+    }
+
+    .rad-tooltip {
+      position: absolute;
+      bottom: -28px;
+      font-size: 0.85rem;
+      font-family: 'Rajdhani', sans-serif;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      background-color: currentColor;
+      color: #fff;
+    }
+
+    #themeToggle:hover .rad-tooltip {
+      opacity: 1;
+    }
+
+    /* Animations */
+    @keyframes colorPulse {
+      0%   { filter: drop-shadow(0 0 0px currentColor); transform: scale(1); }
+      50%  { filter: drop-shadow(0 0 8px currentColor); transform: scale(1.05); }
+      100% { filter: drop-shadow(0 0 0px currentColor); transform: scale(1); }
+    }
+
+    svg#Layer_1:hover {
+      animation: colorPulse 3s infinite;
+    }
+
+    /* Mobile: always pulse + show tooltip */
+    @media (hover: none) and (pointer: coarse) {
+      
+      #themeToggle svg {
+        animation: colorPulse 3s infinite;
+      }
+
+      .rad-tooltip {
+        position: static;
+        margin-top: 8px;
+        opacity: 1 !important;
+        background: none;
+        color: currentColor;
+        font-weight: 600;
+        text-shadow: 0 0 2px rgba(0,0,0,0.2);
+        animation: fadeInPop 0.5s ease-out both;
+      }
+
+      @keyframes fadeInPop {
+        0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+    }
+
+      @media (max-width: 900px) {
+        body {
+        padding: 0 50px; /* adds horizontal padding */
+        box-sizing: border-box;
+      }
+
+      svg {
+        max-width: 75%; /* scale SVG logo */
+      }
+
+      h1 {
+        font-size: 1.2rem;
+      }
+
+      p, #countdown {
+        font-size: 1rem;
+      }
+
+      input[type="email"] {
+        width: 90%;
+        font-size: 1rem;
+      }
+
+      form {
+        width: 80%;
+        max-width: 275px;
+      }
+
+      button {
+        font-size: 1rem;
+      }
+    }
+
+    /* Footer Styles */
+    #siteFooter {
+      margin-top: 40px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Footer color for magenta theme */
+    body.theme-magenta #siteFooter {
+      color: #dd0f66;
+    }
+
+    /* Footer color for orange theme */
+    body.theme-orange #siteFooter {
+      color: #fe7d0b;
+    }
+
+    /* Optional: Mobile font size and padding */
+    @media (max-width: 800px) {
+      #siteFooter {
+        font-size: 0.8rem;
+        padding: 10px 20px;
+    }
+  }
+
+
   </style>
 </head>
 <body class="theme-magenta">
 
-  <!-- Inline SVG logo -->
+  <!-- Inline MIR Logo SVG -->
   <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 600 348.5">
     <path class="st0" d="M17.29,292.96L54.36,62.16c.08-.48.49-.83.98-.84l82.38-.29c.47,0,.88.32.99.77l20.78,89.1c.2.87,1.34,1.07,1.82.31,6.7-10.63,51.79-82.72,55.91-89.14.19-.29.51-.46.85-.45l87.8-.12c.8.01,1.27.91.81,1.57-5.59,7.97-153.34,215.01-159.05,223.5-.46.68-1.5.55-1.77-.23l-36.7-106.25c-.34-.98-1.76-.86-1.93.16l-19.17,113.01c-.07.49-.49.86-.99.86H18.28c-.62,0-1.09-.55-.99-1.16Z"/>
     <path class="st0" d="M369.06,149.59c-.64,0-1.11-.59-.97-1.22,2.12-9.49,16.4-86.32,16.4-86.32.05-.56.54-.97,1.1-.9,85.51,1.79,136.97-11.39,174.33,13.67,42.18,28.3,25.04,102.41-14.79,126.29-1.51.9-10.21,4.19-13.18,5.29-.54.2-.79.81-.55,1.33,3.95,8.5,32.52,71.43,36.88,84.76.21.65-.28,1.3-.95,1.3l-75.02.09c-.43,0-.81-.26-.94-.67-2.41-7.09-23.28-68.75-25.33-76.09-.12-.43-.51-.72-.96-.72l-23.58-.03c-.53-.06-1,.32-1.08.84l-11.34,75.61c-.07.48-.49.84-.98.85l-91.24.55c-.8,0-1.29-.87-.85-1.54l91.93-141.82c.44-.68-.06-1.57-.87-1.54,0,0-50.36.34-58.03.28ZM446.26,167.06c-.07.58.36,1.09.94,1.12,5.64.28,31.69,1.53,35.2.97,29.94-4.74,38.26-51.78,3.89-57.52-3.04-.51-27.75,2.19-32.38,2.7-.45.05-.79.38-.87.82-.95,5.74-5.9,44.92-6.78,51.9Z"/>
     <path class="st1" d="M395.69,165.27c.79-.01,1.28.85.87,1.52-5.8,9.48-36.95,60.25-51.61,81.67-24.94,36.45-51.01,72.53-78.1,107.43-.44.57-1.35.14-1.2-.56l33.31-152.64c.13-.62-.33-1.2-.97-1.21l-63.2-.41c-.8,0-1.27-.89-.83-1.56,15.34-22.72,111-153.31,134.39-185.22.63-.85,1.97-.27,1.79.77,0,0-23.75,135.62-26.22,149.7-.11.61.37,1.17.99,1.16l50.76-.65Z"/>
     <path class="st0" d="M277.08,215.25c.62,0,1.1.56.98,1.18-1.64,9.04-15.02,69.27-16.72,76.91-.1.47-.52.79-1,.78h-63.83c-.62-.01-1.07-.57-.96-1.18l14.11-76.83c.07-.5.49-.86.99-.86h66.43Z"/>
   </svg>
-
+  
   <h1>Radder gear is on the way.</h1>
   <p>Coming Fall of 2025</p>
 
-  <!-- Countdown Timer Output -->
   <div id="countdown">
     <span id="days">0</span> Days :
     <span id="hours">0</span> Hours :
@@ -90,42 +306,70 @@
     <span id="seconds">0</span> Seconds
   </div>
 
-  <!-- Color Theme Toggle -->
-  <button id="themeToggle">Rad Toggle</button>
+  <form id="notifyForm" action="https://formspree.io/f/mldbjvva" method="POST">
+    <input type="email" name="email" placeholder="Drop us your email to get updates." required>
+    <button type="submit">Notify Me</button>
+  </form>
+
+  <div id="confirmationMessage" style="display: none;">You're pretty rad! 🔥</div>
+
+  <div class="rad-toggle-wrapper">
+    <button id="themeToggle" title="Rad Toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.6 100" width="40" height="80">
+        <path d="M47.3,44.23c.23,0,.37.25.25.44-1.7,2.77-10.8,17.6-15.08,23.86-7.29,10.65-14.9,21.19-22.82,31.39-.13.17-.39.04-.35-.16l9.73-44.6c.04-.18-.1-.35-.28-.35l-18.47-.12c-.23,0-.37-.26-.24-.45C4.53,47.6,32.48,9.44,39.32.12c.18-.25.58-.08.52.23,0,0-6.94,39.62-7.66,43.74-.03.18.11.34.29.34l14.83-.19Z" fill="currentColor"/>
+      </svg>
+       <!--  <span class="rad-tooltip">Rad Mode</span> -->
+    </button>
+  </div>
 
   <script>
-    const targetDate = new Date("October 1, 2025 10:00:00 GMT-0500").getTime();
+    const form = document.getElementById("notifyForm");
+    const message = document.getElementById("confirmationMessage");
 
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          message.style.display = "block";
+          message.classList.remove("fade-out");
+          form.reset();
+          setTimeout(() => { message.classList.add("fade-out"); }, 4000);
+          setTimeout(() => { message.style.display = "none"; }, 5000);
+        }
+      });
+    });
+
+    const targetDate = new Date("October 1, 2025 10:00:00 GMT-0500").getTime();
     const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
-
       if (distance < 0) {
         document.getElementById("countdown").innerHTML = "Launched!";
         clearInterval(interval);
         return;
       }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
+      document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
     };
-
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
 
-    // Theme toggle
     document.getElementById("themeToggle").addEventListener("click", () => {
       document.body.classList.toggle("theme-magenta");
       document.body.classList.toggle("theme-orange");
     });
   </script>
-
+  <footer id="siteFooter">
+    &copy; 2025 Make It Radder LLC. All rights reserved.
+  </footer>
+  
 </body>
 </html>
