@@ -1,26 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic metadata and responsive behavior -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Make It Radder – Coming Soon</title>
-
-  <!-- Internal CSS styling -->
   <style>
-    /* Countdown timer container styling */
-    #countdown {
-      font-size: 1.5rem;
-      color: #333;
-      margin-top: 20px;
-    }
-
-    /* Make countdown numbers bold */
-    #countdown span {
-      font-weight: bold;
-    }
-
-    /* General body styling to center content */
     body {
       background: #f5f5f5;
       font-family: sans-serif;
@@ -33,49 +17,52 @@
       text-align: center;
     }
 
-    /* Logo SVG sizing */
     svg {
       max-width: 300px;
       height: auto;
       margin-bottom: 20px;
     }
 
-    /* Main heading style */
     h1 {
       color: #222;
       font-size: 2rem;
     }
 
-    /* Paragraph styling */
     p {
       color: #555;
     }
+
+    #countdown {
+      font-size: 1.5rem;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    #countdown span {
+      font-weight: bold;
+    }
   </style>
 </head>
-
 <body>
 
-  <!-- Embedded inline SVG logo for infinite scalability -->
+  <!-- Inline SVG logo -->
   <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 600 348.5">
     <defs>
-      <!-- Internal SVG styles for color fills -->
       <style>
         .st0 { fill: #dd0f66; }
         .st1 { fill: #fe7d0b; }
       </style>
     </defs>
-    <!-- The shapes that make up your logo -->
-    <path class="st0" d="..."/>
-    <path class="st0" d="..."/>
-    <path class="st1" d="..."/>
-    <path class="st0" d="..."/>
+    <path class="st0" d="M17.29,292.96L54.36,62.16c.08-.48.49-.83.98-.84l82.38-.29c.47,0,.88.32.99.77l20.78,89.1c.2.87,1.34,1.07,1.82.31,6.7-10.63,51.79-82.72,55.91-89.14.19-.29.51-.46.85-.45l87.8-.12c.8.01,1.27.91.81,1.57-5.59,7.97-153.34,215.01-159.05,223.5-.46.68-1.5.55-1.77-.23l-36.7-106.25c-.34-.98-1.76-.86-1.93.16l-19.17,113.01c-.07.49-.49.86-.99.86H18.28c-.62,0-1.09-.55-.99-1.16Z"/>
+    <path class="st0" d="M369.06,149.59c-.64,0-1.11-.59-.97-1.22,2.12-9.49,16.4-86.32,16.4-86.32.05-.56.54-.97,1.1-.9,85.51,1.79,136.97-11.39,174.33,13.67,42.18,28.3,25.04,102.41-14.79,126.29-1.51.9-10.21,4.19-13.18,5.29-.54.2-.79.81-.55,1.33,3.95,8.5,32.52,71.43,36.88,84.76.21.65-.28,1.3-.95,1.3l-75.02.09c-.43,0-.81-.26-.94-.67-2.41-7.09-23.28-68.75-25.33-76.09-.12-.43-.51-.72-.96-.72l-23.58-.03c-.53-.06-1,.32-1.08.84l-11.34,75.61c-.07.48-.49.84-.98.85l-91.24.55c-.8,0-1.29-.87-.85-1.54l91.93-141.82c.44-.68-.06-1.57-.87-1.54,0,0-50.36.34-58.03.28ZM446.26,167.06c-.07.58.36,1.09.94,1.12,5.64.28,31.69,1.53,35.2.97,29.94-4.74,38.26-51.78,3.89-57.52-3.04-.51-27.75,2.19-32.38,2.7-.45.05-.79.38-.87.82-.95,5.74-5.9,44.92-6.78,51.9Z"/>
+    <path class="st1" d="M395.69,165.27c.79-.01,1.28.85.87,1.52-5.8,9.48-36.95,60.25-51.61,81.67-24.94,36.45-51.01,72.53-78.1,107.43-.44.57-1.35.14-1.2-.56l33.31-152.64c.13-.62-.33-1.2-.97-1.21l-63.2-.41c-.8,0-1.27-.89-.83-1.56,15.34-22.72,111-153.31,134.39-185.22.63-.85,1.97-.27,1.79.77,0,0-23.75,135.62-26.22,149.7-.11.61.37,1.17.99,1.16l50.76-.65Z"/>
+    <path class="st0" d="M277.08,215.25c.62,0,1.1.56.98,1.18-1.64,9.04-15.02,69.27-16.72,76.91-.1.47-.52.79-1,.78h-63.83c-.62-.01-1.07-.57-.96-1.18l14.11-76.83c.07-.5.49-.86.99-.86h66.43Z"/>
   </svg>
 
-  <!-- Simple static text -->
-  <p>Radder gear is on the way.</p>
+  <h1>Radder gear is on the way.</h1>
   <p>Coming Fall of 2025</p>
 
-  <!-- Countdown container with placeholder spans -->
+  <!-- Countdown Timer Output -->
   <div id="countdown">
     <span id="days">0</span> Days :
     <span id="hours">0</span> Hours :
@@ -83,40 +70,38 @@
     <span id="seconds">0</span> Seconds
   </div>
 
-  <!-- JavaScript countdown logic -->
+  <!-- Countdown Script -->
   <script>
-    // Target date: October 1, 2025 at 10:00 AM Central Time (CT = GMT-0500)
-    const targetDate = new Date('October 1, 2025 10:00:00 GMT-0500').getTime();
+    // Set target launch date: Oct 1, 2025 @ 10:00 AM Central Time (GMT-0500)
+    const targetDate = new Date("October 1, 2025 10:00:00 GMT-0500").getTime();
 
-    // Function to update the countdown display
+    // Function to update countdown every second
     const updateCountdown = () => {
-      const now = new Date().getTime(); // Get current timestamp
-      const distance = targetDate - now; // Time difference in milliseconds
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-      // If the countdown is complete
+      // If countdown is over
       if (distance < 0) {
         document.getElementById("countdown").innerHTML = "Launched!";
-        clearInterval(interval); // Stop the timer
+        clearInterval(interval);
         return;
       }
 
-      // Convert time from milliseconds to days, hours, minutes, seconds
+      // Convert milliseconds to time units
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // Update the DOM elements with calculated values
+      // Display updated values in the HTML
       document.getElementById("days").innerText = days;
       document.getElementById("hours").innerText = hours;
       document.getElementById("minutes").innerText = minutes;
       document.getElementById("seconds").innerText = seconds;
     };
 
-    // Run it once on page load
+    // Initial call + interval setup
     updateCountdown();
-
-    // Update the countdown every 1000 ms (1 second)
     const interval = setInterval(updateCountdown, 1000);
   </script>
 
