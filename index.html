@@ -284,6 +284,21 @@
   }
 
 
+.radder-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('mirbg.png'); /* update path */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  filter: blur(2px) brightness(70%); /* you can adjust this */
+  pointer-events: none;
+}
+
+
   </style>
 </head>
 <body class="theme-magenta">
@@ -371,5 +386,10 @@
     &copy; 2025 Make It Radder LLC. All rights reserved.
   </footer>
   
+  <!-- Background code start --!>
+<!-- CSS Background Container -->
+<div class="radder-bg"></div>
+
+
 </body>
 </html>
